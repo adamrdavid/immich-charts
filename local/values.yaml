@@ -47,7 +47,7 @@ machine-learning:
             HF_XET_CACHE: /cache/huggingface-xet
             MPLCONFIGDIR: /cache/matplotlib-config
   persistence:
-    cache:
+    test:
       enabled: true
       size: 10Gi
       # Optional: Set this to persistentVolumeClaim to avoid downloading the ML models every start.
