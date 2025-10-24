@@ -32,3 +32,25 @@ immich:
   persistence:
     library:
       existingClaim: immich-library-pvc
+
+machine-learning:
+  enabled: true
+  controllers:
+    main:
+      containers:
+        main:
+          image:
+            repository: ghcr.io/immich-app/immich-machine-learning
+            pullPolicy: IfNotPresent
+          env:
+            TRANSFORMERS_CACHE: /cache
+            HF_XET_CACHE: /cache/huggingface-xet
+            MPLCONFIGDIR: /cache/matplotlib-config
+  persistence:
+    cache:
+      enabled: true
+      size: 10Gi
+      # Optional: Set this to persistentVolumeClaim to avoid downloading the ML models every start.
+      type: emptyDir
+      accessMode: ReadWriteMany
+      # storageClass: your-class
