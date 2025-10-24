@@ -56,5 +56,6 @@ service:
 {{ if (index .Values "machine-learning").enabled }}
 {{- $ctx := deepCopy . -}}
 {{- $_ := get .Values "machine-learning" | mergeOverwrite $ctx.Values -}}
+{{- $_ = include "immich.machine-learning" . | fromYaml | merge $ctx.Values -}}
 {{- include "bjw-s.common.loader.all" $ctx }}
 {{ end }}
